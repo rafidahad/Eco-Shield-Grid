@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { decrypt, SESSION_NAME } from "@/lib/auth";
 
 // Routes that don't require authentication
-const publicRoutes = ["/login", "/api/auth/login", "/api/telemetry"];
+const publicRoutes = ["/login", "/api/auth/login", "/api/telemetry", "/register", "/api/nodes/register"];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
