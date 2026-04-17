@@ -74,7 +74,7 @@ export default function SecurityPage() {
                         </div>
                         <div className="space-y-1 flex-1">
                             <div className="flex justify-between items-start">
-                                <h4 className="text-[11px] font-black text-primary uppercase tracking-tight">{event.type} // {event.nodeName}</h4>
+                                <h4 className="text-[11px] font-black text-primary uppercase tracking-tight">{event.type} {" // "} {event.nodeName}</h4>
                                 <span className="text-[9px] font-mono text-secondary">{new Date(event.timestamp).toLocaleString()}</span>
                             </div>
                             <p className="text-[10px] text-secondary/80 leading-relaxed uppercase">{event.details}</p>
