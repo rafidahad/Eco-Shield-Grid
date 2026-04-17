@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Node {
+  id        String      @id @default(cuid())
+  deviceId  String      @unique
+  apiKey    String
+  ownerName String
+  nodeName  String
+  nodeType            String      // e.g., "WAREHOUSE" or "FIELD"
+  
+  // --- Cloud Thresholds ---
+  coolingThreshold    Float       @default(25.0) // For Node 1 (Warehouse)
+  irrigationThreshold Int         @default(30)   // For Node 2 (Field)
+  
+  isActive            Boolean     @default(true)
+  telemetry           Telemetry[]
+}
+
+model Telemetry {
+  id        String   @id @default(cuid())
+  nodeId    String
+  node      Node     @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  payload   Json
+  createdAt DateTime @default(now())
+
+  @@index([nodeId, createdAt])
+}

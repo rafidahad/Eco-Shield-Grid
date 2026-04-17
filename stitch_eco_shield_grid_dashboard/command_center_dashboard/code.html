@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eco-Shield Grid Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#2e3c4e",
+                        "surface-container": "#19191d",
+                        "on-tertiary": "#00692c",
+                        "surface-container-high": "#1f1f24",
+                        "on-surface-variant": "#acaab1",
+                        "on-secondary": "#122131",
+                        "primary-container": "#454748",
+                        "surface-container-lowest": "#000000",
+                        "on-error-container": "#ff97a3",
+                        "on-primary": "#3f4041",
+                        "secondary-fixed-dim": "#c6d6ec",
+                        "secondary-dim": "#909fb4",
+                        "tertiary-fixed": "#6bff8f",
+                        "error": "#ec7c8a",
+                        "surface-container-low": "#131316",
+                        "secondary-fixed": "#d4e4fa",
+                        "secondary": "#909fb4",
+                        "on-tertiary-container": "#005f28",
+                        "surface-bright": "#2b2c32",
+                        "on-secondary-container": "#b1c0d6",
+                        "on-error": "#490013",
+                        "inverse-on-surface": "#565457",
+                        "on-tertiary-fixed": "#004a1d",
+                        "on-secondary-fixed-variant": "#4e5d6f",
+                        "tertiary-dim": "#5bf083",
+                        "primary-fixed": "#e2e2e3",
+                        "primary-fixed-dim": "#d4d4d5",
+                        "outline-variant": "#47474e",
+                        "on-secondary-fixed": "#324052",
+                        "on-primary-container": "#d0d0d1",
+                        "on-background": "#e7e4ec",
+                        "inverse-surface": "#fcf8fb",
+                        "surface-variant": "#25252b",
+                        "surface-container-highest": "#25252b",
+                        "error-container": "#7f2737",
+                        "surface-tint": "#c6c6c7",
+                        "surface": "#0e0e10",
+                        "primary": "#c6c6c7",
+                        "on-primary-fixed-variant": "#5a5c5d",
+                        "on-tertiary-fixed-variant": "#006a2d",
+                        "error-dim": "#b95463",
+                        "surface-dim": "#0e0e10",
+                        "tertiary-fixed-dim": "#5bf083",
+                        "tertiary": "#c5ffc9",
+                        "tertiary-container": "#6bff8f",
+                        "primary-dim": "#b8b9ba",
+                        "outline": "#75757c",
+                        "on-surface": "#e7e4ec",
+                        "background": "#0e0e10",
+                        "inverse-primary": "#5e5f60",
+                        "on-primary-fixed": "#3e4041"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0e0e10;
+            color: #e7e4ec;
+        }
+        .headline-font { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Status Bar (Global Shield Integrity) -->
+<div class="fixed top-0 left-0 w-full h-1 bg-tertiary z-[100]"></div>
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full border-t-4 border-[#c5ffc9] bg-[#0e0e10] flex justify-between items-center px-6 py-3 w-full z-[90]">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-[#c6c6c7] headline-font">TACTICAL_NODE_01</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#909fb4] hover:text-[#c6c6c7] font-label uppercase tracking-widest text-[10px] transition-colors duration-150" href="#">SENSORS</a>
+<a class="text-[#c6c6c7] border-b-2 border-[#c6c6c7] pb-1 font-label uppercase tracking-widest text-[10px]" href="#">NODES</a>
+<a class="text-[#909fb4] hover:text-[#c6c6c7] font-label uppercase tracking-widest text-[10px] transition-colors duration-150" href="#">NETWORK</a>
+<a class="text-[#909fb4] hover:text-[#c6c6c7] font-label uppercase tracking-widest text-[10px] transition-colors duration-150" href="#">THREATS</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 bg-surface-container-high px-3 py-1.5">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-[10px] font-label uppercase tracking-widest text-tertiary">LIVE_GRID_ACTIVE</span>
+</div>
+<div class="flex items-center gap-3 text-[#c6c6c7]">
+<span class="material-symbols-outlined text-xl">schedule</span>
+<span class="text-[11px] font-label font-bold tracking-widest">14:22:09 UTC</span>
+<span class="material-symbols-outlined text-xl">notifications_active</span>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-[#0e0e10] flex flex-col pt-16 z-40 border-r-0">
+<div class="px-6 py-8">
+<div class="flex items-center gap-3 mb-8 bg-[#1f1f24] p-4">
+<div class="w-10 h-10 bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</div>
+<div>
+<h3 class="text-[11px] font-black text-[#c6c6c7] headline-font uppercase">OPERATOR_01</h3>
+<p class="text-[9px] text-[#909fb4] uppercase tracking-widest">SECTOR_7G</p>
+</div>
+</div>
+<nav class="space-y-1">
+<div class="flex items-center gap-3 px-4 py-3 bg-[#1f1f24] text-[#c6c6c7] border-l-2 border-[#c6c6c7] transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="dashboard">dashboard</span>
+<span class="text-[11px] font-label uppercase tracking-widest">Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-[#909fb4] hover:bg-[#1f1f24]/50 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="hub">hub</span>
+<span class="text-[11px] font-label uppercase tracking-widest">Topology</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-[#909fb4] hover:bg-[#1f1f24]/50 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="list_alt">list_alt</span>
+<span class="text-[11px] font-label uppercase tracking-widest">Logs</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-[#909fb4] hover:bg-[#1f1f24]/50 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="shield">shield</span>
+<span class="text-[11px] font-label uppercase tracking-widest">Security</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 text-[#909fb4] hover:bg-[#1f1f24]/50 transition-all duration-200 cursor-pointer">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+<span class="text-[11px] font-label uppercase tracking-widest">Config</span>
+</div>
+</nav>
+</div>
+<div class="mt-auto p-6">
+<div class="bg-surface-container-high p-4">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[9px] text-secondary uppercase tracking-tighter">GRID_LOAD</span>
+<span class="text-[9px] text-tertiary">34%</span>
+</div>
+<div class="w-full h-1 bg-surface-container">
+<div class="w-1/3 h-full bg-tertiary"></div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 pt-20 p-8 min-h-screen bg-background">
+<!-- Alerts Panel -->
+<section class="mb-8">
+<div class="bg-error-container/20 border-l-4 border-error p-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+<div class="headline-font font-bold text-error tracking-tight">HIGH TEMPERATURE ALERT: Warehouse Node exceeding 25°C</div>
+</div>
+<div class="text-[10px] text-error font-label uppercase tracking-widest bg-error/10 px-2 py-1">CRITICAL_EVENT_ID: 9942</div>
+</div>
+</section>
+<!-- Node Overview Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+<!-- Node 1: Warehouse -->
+<div class="bg-surface-container-low p-0 flex flex-col border-b border-r border-outline-variant/20">
+<div class="bg-surface-container-high px-6 py-3 flex justify-between items-center">
+<span class="text-[10px] font-label uppercase tracking-widest text-secondary">NODE_01 // WAREHOUSE</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="factory">factory</span>
+</div>
+<div class="p-8 flex flex-col items-center justify-center">
+<span class="text-[10px] text-secondary uppercase mb-2 tracking-[0.2em]">INTERNAL_TEMP_C</span>
+<div class="text-7xl headline-font font-bold text-error mb-6">25.4<span class="text-2xl font-light">°C</span></div>
+<div class="flex gap-4 w-full">
+<div class="flex-1 bg-tertiary/10 p-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-sm" data-icon="mode_fan">mode_fan</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-tertiary">Fan: ON</span>
+</div>
+<div class="w-1.5 h-1.5 bg-tertiary animate-pulse"></div>
+</div>
+<div class="flex-1 bg-surface-container-highest p-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="water_pump">water_pump</span>
+<span class="text-[10px] font-label uppercase tracking-widest text-secondary">Pump: OFF</span>
+</div>
+<div class="w-1.5 h-1.5 bg-outline-variant"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Node 2: Field -->
+<div class="bg-surface-container-low p-0 flex flex-col border-b border-r border-outline-variant/20">
+<div class="bg-surface-container-high px-6 py-3 flex justify-between items-center">
+<span class="text-[10px] font-label uppercase tracking-widest text-secondary">NODE_02 // FIELD_ALPHA</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="agriculture">agriculture</span>
+</div>
+<div class="p-8 flex flex-col items-center justify-center">
+<span class="text-[10px] text-secondary uppercase mb-2 tracking-[0.2em]">SOIL_MOISTURE</span>
+<div class="text-7xl headline-font font-bold text-primary mb-6">35<span class="text-2xl font-light">%</span></div>
+<div class="w-full bg-[#3d3d1a]/20 p-4 border border-[#eab308]/20 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-[9px] text-[#eab308] uppercase tracking-widest mb-1">AIR_QUALITY_PPM</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#eab308] text-sm" data-icon="air">air</span>
+<span class="text-lg headline-font font-bold text-[#eab308]">450</span>
+</div>
+</div>
+<div class="text-right">
+<span class="text-[9px] text-[#eab308] font-bold block mb-1">MODERATE</span>
+<div class="w-16 h-1 bg-[#eab308]/30">
+<div class="w-2/3 h-full bg-[#eab308]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Analytical Charts Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Chart 1: Warehouse Climate -->
+<div class="bg-surface-container-low border-b border-r border-outline-variant/20">
+<div class="bg-surface-container-high px-6 py-3 border-b border-surface-container flex items-center justify-between">
+<span class="text-[10px] font-label uppercase tracking-widest text-secondary">ANALYTICS // WAREHOUSE_CLIMATE</span>
+<span class="text-[9px] text-outline px-2 border border-outline">REAL_TIME_STREAM</span>
+</div>
+<div class="p-6">
+<!-- Faux Chart Visualization -->
+<div class="h-48 relative border-l border-b border-outline-variant/30 flex items-end">
+<div class="absolute inset-0 grid grid-cols-6 gap-0">
+<div class="border-r border-outline-variant/10"></div>
+<div class="border-r border-outline-variant/10"></div>
+<div class="border-r border-outline-variant/10"></div>
+<div class="border-r border-outline-variant/10"></div>
+<div class="border-r border-outline-variant/10"></div>
+</div>
+<svg class="w-full h-full text-error" preserveaspectratio="none" viewbox="0 0 400 100">
+<path d="M0 80 L40 75 L80 82 L120 70 L160 65 L200 40 L240 30 L280 25 L320 28 L360 22 L400 20" fill="none" stroke="currentColor" stroke-width="2"></path>
+<path d="M0 80 L40 75 L80 82 L120 70 L160 65 L200 40 L240 30 L280 25 L320 28 L360 22 L400 20 V100 H0 Z" fill="currentColor" fill-opacity="0.05"></path>
+</svg>
+</div>
+<div class="mt-4 flex justify-between text-[9px] text-outline uppercase tracking-tighter">
+<span>T-60m</span>
+<span>T-30m</span>
+<span>NOW</span>
+</div>
+</div>
+</div>
+<!-- Chart 2: Soil & Air Health -->
+<div class="bg-surface-container-low border-b border-r border-outline-variant/20">
+<div class="bg-surface-container-high px-6 py-3 border-b border-surface-container flex items-center justify-between">
+<span class="text-[10px] font-label uppercase tracking-widest text-secondary">ANALYTICS // SOIL_AIR_HEALTH</span>
+<div class="flex gap-4">
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 bg-primary"></div>
+<span class="text-[8px] text-outline">MOISTURE</span>
+</div>
+<div class="flex items-center gap-1">
+<div class="w-2 h-2 bg-[#eab308]"></div>
+<span class="text-[8px] text-outline">PPM</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<!-- Faux Chart Visualization 2 -->
+<div class="h-48 relative border-l border-b border-outline-variant/30 flex items-end">
+<div class="absolute inset-0 grid grid-rows-4 gap-0">
+<div class="border-t border-outline-variant/10"></div>
+<div class="border-t border-outline-variant/10"></div>
+<div class="border-t border-outline-variant/10"></div>
+<div class="border-t border-outline-variant/10"></div>
+</div>
+<svg class="absolute w-full h-full text-primary" preserveaspectratio="none" viewbox="0 0 400 100">
+<path d="M0 50 C 100 40, 200 60, 400 55" fill="none" stroke="currentColor" stroke-width="2"></path>
+</svg>
+<svg class="absolute w-full h-full text-[#eab308]" preserveaspectratio="none" viewbox="0 0 400 100">
+<path d="M0 70 L50 72 L100 68 L150 75 L200 70 L250 82 L300 78 L350 85 L400 80" fill="none" stroke="currentColor" stroke-dasharray="4 2" stroke-width="2"></path>
+</svg>
+</div>
+<div class="mt-4 flex justify-between text-[9px] text-outline uppercase tracking-tighter">
+<span>T-60m</span>
+<span>T-30m</span>
+<span>NOW</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Infrastructure Status Table -->
+<section class="mt-8">
+<div class="bg-surface-container-high px-6 py-3 border-b border-surface-container">
+<span class="text-[10px] font-label uppercase tracking-widest text-secondary">ACTIVE_LOG_FEED</span>
+</div>
+<div class="bg-surface-container-low overflow-x-auto">
+<table class="w-full text-left text-[11px] font-body border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest text-outline uppercase tracking-widest text-[9px]">
+<th class="px-6 py-4 font-normal">TIMESTAMP</th>
+<th class="px-6 py-4 font-normal">ORIGIN</th>
+<th class="px-6 py-4 font-normal">EVENT_TYPE</th>
+<th class="px-6 py-4 font-normal">STATUS</th>
+<th class="px-6 py-4 font-normal">STRENGTH</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-4 font-mono text-secondary">14:21:44</td>
+<td class="px-6 py-4 text-primary">W_NODE_01</td>
+<td class="px-6 py-4">THERMAL_THRESHOLD_WARNING</td>
+<td class="px-6 py-4"><span class="bg-error-container text-on-error-container px-2 py-0.5 text-[9px] font-bold uppercase">Breach</span></td>
+<td class="px-6 py-4">98.2%</td>
+</tr>
+<tr class="bg-surface-container-low/50 hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-4 font-mono text-secondary">14:20:12</td>
+<td class="px-6 py-4 text-primary">F_NODE_02</td>
+<td class="px-6 py-4">MOISTURE_LEVEL_OPTIMIZATION</td>
+<td class="px-6 py-4"><span class="bg-tertiary-container text-on-tertiary-container px-2 py-0.5 text-[9px] font-bold uppercase">Active</span></td>
+<td class="px-6 py-4">42.1%</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="px-6 py-4 font-mono text-secondary">14:18:55</td>
+<td class="px-6 py-4 text-primary">SYS_CORE</td>
+<td class="px-6 py-4">GLOBAL_SHIELD_SYNC</td>
+<td class="px-6 py-4"><span class="bg-tertiary-container text-on-tertiary-container px-2 py-0.5 text-[9px] font-bold uppercase">Active</span></td>
+<td class="px-6 py-4">100.0%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Footer HUD Decor -->
+<footer class="ml-64 p-6 border-t border-outline-variant/10 flex justify-between items-center text-[10px] text-outline-variant font-label uppercase tracking-widest">
+<div>SYSTEM_PROTOCOL: BRUTALIST_v4.0.2</div>
+<div class="flex gap-6">
+<span>ENCRYPTION: AES-256-TACTICAL</span>
+<span class="text-tertiary">ENCLAVE_SECURE</span>
+</div>
+</footer>
+</body></html>

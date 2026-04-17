@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IOT_CMD_CNTR | LOG_ENTRY_9942</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-high": "#1f1f24",
+                    "on-secondary": "#122131",
+                    "surface": "#0e0e10",
+                    "error-container": "#7f2737",
+                    "on-tertiary-container": "#005f28",
+                    "surface-container-lowest": "#000000",
+                    "on-secondary-container": "#b1c0d6",
+                    "surface-tint": "#c6c6c7",
+                    "secondary-fixed-dim": "#c6d6ec",
+                    "error": "#ec7c8a",
+                    "surface-container-low": "#131316",
+                    "on-surface": "#e7e4ec",
+                    "tertiary-container": "#6bff8f",
+                    "tertiary-dim": "#5bf083",
+                    "on-primary": "#3f4041",
+                    "tertiary-fixed-dim": "#5bf083",
+                    "on-background": "#e7e4ec",
+                    "background": "#0e0e10",
+                    "secondary-fixed": "#d4e4fa",
+                    "on-tertiary-fixed-variant": "#006a2d",
+                    "primary-fixed-dim": "#d4d4d5",
+                    "on-tertiary": "#00692c",
+                    "tertiary": "#c5ffc9",
+                    "tertiary-fixed": "#6bff8f",
+                    "surface-container-highest": "#25252b",
+                    "primary-container": "#454748",
+                    "outline-variant": "#47474e",
+                    "secondary": "#909fb4",
+                    "primary-fixed": "#e2e2e3",
+                    "primary": "#c6c6c7",
+                    "surface-container": "#19191d",
+                    "on-tertiary-fixed": "#004a1d",
+                    "error-dim": "#b95463",
+                    "primary-dim": "#b8b9ba",
+                    "outline": "#75757c",
+                    "inverse-surface": "#fcf8fb",
+                    "on-primary-fixed": "#3e4041",
+                    "on-error": "#490013",
+                    "on-secondary-fixed": "#324052",
+                    "on-surface-variant": "#acaab1",
+                    "on-primary-fixed-variant": "#5a5c5d",
+                    "inverse-on-surface": "#565457",
+                    "surface-dim": "#0e0e10",
+                    "on-primary-container": "#d0d0d1",
+                    "surface-variant": "#25252b",
+                    "on-secondary-fixed-variant": "#4e5d6f",
+                    "on-error-container": "#ff97a3",
+                    "surface-bright": "#2b2c32",
+                    "secondary-container": "#2e3c4e",
+                    "secondary-dim": "#909fb4",
+                    "inverse-primary": "#5e5f60"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0e0e10; }
+        ::-webkit-scrollbar-thumb { background: #1f1f24; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen">
+<!-- Global Status Bar -->
+<div class="fixed top-0 left-0 w-full h-1 bg-tertiary z-[60]"></div>
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 border-t-4 border-tertiary bg-zinc-900 border-b border-zinc-800 flex justify-between items-center px-6 h-16">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold uppercase tracking-widest text-zinc-300 font-['Space_Grotesk']">IOT_CMD_CNTR</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-zinc-500 font-['Space_Grotesk'] tracking-tight hover:text-zinc-100 hover:bg-zinc-800 transition-colors" href="#">Sectors</a>
+<a class="text-zinc-500 font-['Space_Grotesk'] tracking-tight hover:text-zinc-100 hover:bg-zinc-800 transition-colors" href="#">Nodes</a>
+<a class="text-zinc-500 font-['Space_Grotesk'] tracking-tight hover:text-zinc-100 hover:bg-zinc-800 transition-colors" href="#">Protocols</a>
+<a class="text-zinc-100 border-b-2 border-zinc-300 pb-1 font-['Space_Grotesk'] tracking-tight" href="#">Diagnostics</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-zinc-500 hover:text-zinc-100"><span class="material-symbols-outlined">notifications</span></button>
+<button class="p-2 text-zinc-500 hover:text-zinc-100"><span class="material-symbols-outlined">settings</span></button>
+</div>
+</nav>
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-zinc-950 border-r border-zinc-900 flex flex-col py-4 hidden md:flex">
+<div class="px-6 mb-8">
+<p class="text-[10px] uppercase tracking-[0.2em] text-secondary font-headline">Sector Context</p>
+<h2 class="text-xl font-bold font-headline text-on-surface">SECTOR_07</h2>
+<div class="flex items-center gap-2 mt-1">
+<span class="w-2 h-2 bg-tertiary rounded-full"></span>
+<span class="text-[10px] uppercase tracking-tighter text-tertiary">OPERATIONAL</span>
+</div>
+</div>
+<div class="flex-1">
+<nav class="space-y-1">
+<a class="text-zinc-500 px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs uppercase tracking-tighter hover:bg-zinc-900 hover:text-zinc-300 transition-all active:scale-95 duration-75" href="#">
+<span class="material-symbols-outlined">grid_view</span> Dashboard
+                </a>
+<a class="bg-zinc-800 text-zinc-100 border-l-2 border-emerald-400 px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs uppercase tracking-tighter active:scale-95 duration-75" href="#">
+<span class="material-symbols-outlined">list_alt</span> Event Logs
+                </a>
+<a class="text-zinc-500 px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs uppercase tracking-tighter hover:bg-zinc-900 hover:text-zinc-300 transition-all active:scale-95 duration-75" href="#">
+<span class="material-symbols-outlined">analytics</span> Telemetry
+                </a>
+<a class="text-zinc-500 px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs uppercase tracking-tighter hover:bg-zinc-900 hover:text-zinc-300 transition-all active:scale-95 duration-75" href="#">
+<span class="material-symbols-outlined">shield</span> Shield Status
+                </a>
+<a class="text-zinc-500 px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs uppercase tracking-tighter hover:bg-zinc-900 hover:text-zinc-300 transition-all active:scale-95 duration-75" href="#">
+<span class="material-symbols-outlined">lan</span> Node Registry
+                </a>
+</nav>
+</div>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 font-headline text-xs font-bold tracking-widest hover:opacity-90 transition-opacity">
+                DEPLOY SHIELD
+            </button>
+<div class="mt-4 border-t border-zinc-900 pt-4">
+<a class="text-zinc-500 px-4 py-3 flex items-center gap-3 font-['Inter'] text-xs uppercase tracking-tighter hover:text-zinc-300" href="#">
+<span class="material-symbols-outlined">logout</span> Log Out
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-20 p-8 min-h-screen">
+<!-- Header & Breadcrumbs -->
+<header class="mb-8">
+<div class="flex items-center gap-2 text-[10px] font-headline uppercase tracking-[0.2em] text-secondary mb-4">
+<span>Logs</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-primary">Entry 9942</span>
+</div>
+<div class="flex justify-between items-end border-b border-surface-container-high pb-6">
+<div>
+<h1 class="text-4xl font-extrabold font-headline tracking-tighter text-on-surface">Log Entry: EVENT_ID_9942</h1>
+<p class="text-secondary mt-2 font-headline uppercase tracking-tighter text-sm">THERMAL_THRESHOLD_WARNING // WAREHOUSE_01</p>
+</div>
+<div class="bg-error-container text-on-error-container px-6 py-2 flex items-center gap-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-headline font-bold tracking-widest text-lg">BREACH</span>
+</div>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Summary Module -->
+<section class="lg:col-span-4 bg-surface-container-low p-6 flex flex-col justify-between min-h-[240px]">
+<div class="space-y-4">
+<div>
+<label class="text-[10px] text-secondary uppercase tracking-widest block mb-1">Incident Timestamp</label>
+<div class="text-2xl font-headline font-medium text-primary">2023-11-24 04:12:09.432 UTC</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="text-[10px] text-secondary uppercase tracking-widest block mb-1">Node Source</label>
+<div class="text-lg font-headline text-on-surface">ESP32-S3-W01-94</div>
+</div>
+<div>
+<label class="text-[10px] text-secondary uppercase tracking-widest block mb-1">Severity</label>
+<div class="text-lg font-headline text-error">CRITICAL</div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 mt-8 py-2 px-3 bg-surface-container-high">
+<span class="material-symbols-outlined text-tertiary">verified_user</span>
+<span class="text-[10px] text-on-surface uppercase tracking-tighter">System integrity check passed prior to event</span>
+</div>
+</section>
+<!-- Raw Telemetry Payload (JSON) -->
+<section class="lg:col-span-8 bg-surface-container-lowest border border-outline-variant/20 p-6 overflow-hidden">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline text-xs font-bold uppercase tracking-widest text-secondary flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">code</span> Raw Telemetry Payload
+                    </h3>
+<button class="text-[10px] text-primary hover:underline font-headline tracking-widest">COPY DATA</button>
+</div>
+<div class="bg-black/50 p-4 font-mono text-sm text-tertiary-dim leading-relaxed overflow-x-auto">
+<pre>{
+  "event_id": "9942",
+  "node_id": "WAREHOUSE_01_SENSOR_04",
+  "telemetry": {
+    "internal_temp_c": 84.6,
+    "external_temp_c": 29.2,
+    "humidity_pct": 14.8,
+    "cpu_load": 0.92,
+    "fan_active": false,
+    "fan_target_rpm": 4500,
+    "fan_current_rpm": 0
+  },
+  "flags": ["HARDWARE_STALL", "CRITICAL_TEMP"],
+  "checksum": "0x4F2A91"
+}</pre>
+</div>
+</section>
+<!-- Node Metadata -->
+<section class="lg:col-span-4 bg-surface-container-low p-6">
+<h3 class="font-headline text-xs font-bold uppercase tracking-widest text-secondary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">info</span> Node Metadata
+                </h3>
+<div class="space-y-6">
+<div class="flex justify-between border-b border-surface-container-high pb-2">
+<span class="text-secondary text-xs uppercase tracking-tighter">MAC ADDRESS</span>
+<span class="text-on-surface font-mono text-xs">AC:67:B2:4D:99:42</span>
+</div>
+<div class="flex justify-between border-b border-surface-container-high pb-2">
+<span class="text-secondary text-xs uppercase tracking-tighter">PROTOCOL</span>
+<span class="text-on-surface font-mono text-xs">ESP-NOW v2.4</span>
+</div>
+<div class="flex justify-between border-b border-surface-container-high pb-2">
+<span class="text-secondary text-xs uppercase tracking-tighter">FIRMWARE</span>
+<span class="text-on-surface font-mono text-xs">GRID_OS_4.2.1-PROD</span>
+</div>
+<div class="flex justify-between border-b border-surface-container-high pb-2">
+<span class="text-secondary text-xs uppercase tracking-tighter">LAST HEARTBEAT</span>
+<span class="text-on-surface font-mono text-xs">0.4s AGO</span>
+</div>
+</div>
+<div class="mt-8">
+<button class="w-full bg-surface-container-highest py-3 text-[10px] font-bold tracking-widest uppercase hover:bg-primary hover:text-on-primary transition-colors">
+                        REMOTE NODE REBOOT
+                    </button>
+</div>
+</section>
+<!-- Tactical Context (Map/Diagram) -->
+<section class="lg:col-span-5 bg-surface-container-low relative group overflow-hidden h-[340px]">
+<div class="absolute inset-0 opacity-40">
+<img class="w-full h-full object-cover grayscale brightness-50" data-alt="blueprint schematic of a industrial warehouse facility with glowing nodes indicating sensor placement and a red warning pulse at one specific sector" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo6eEhIlGMDyTFj_bqcBXX_pnHAvAT9tyHvbreTDat8vMkJ-SaR8ymzbhehqIRmMOSjAazAspmpXL2ViUI0Jz-Bd7uvyq1xPy_Te0LTgTaa2mPwqPkSYFgZOLT739bA0H5XU9z8gCpVdmvT32QOpXrWWo47Lb6jppH17F9VRuAJhRQ2qCbpa5Z5MmYLCPzf9qq2aYOaHxiBijOdCIKjvh6Zy1_zVdkqtNJow4AMLUBvRce1kJR5D3bsZtAVm3opJA6WrkK241DCyfe"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="relative p-6 h-full flex flex-col justify-between">
+<h3 class="font-headline text-xs font-bold uppercase tracking-widest text-secondary flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">map</span> Tactical Context
+                    </h3>
+<div>
+<div class="flex items-center gap-4 mb-2">
+<div class="w-4 h-4 bg-error-dim animate-pulse"></div>
+<span class="text-lg font-headline font-bold text-on-surface tracking-tighter">SECTOR_07-WH_01-G4</span>
+</div>
+<p class="text-secondary text-xs max-w-xs">The reporting node is located in the cooling intake assembly of the main server floor.</p>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<section class="lg:col-span-3 bg-surface-container-high p-6 flex flex-col gap-3">
+<h3 class="font-headline text-xs font-bold uppercase tracking-widest text-secondary mb-3">Response Protocol</h3>
+<button class="flex items-center gap-4 bg-primary text-on-primary p-4 font-headline text-xs font-bold tracking-widest uppercase hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined">check_circle</span>
+                    Acknowledge Alert
+                </button>
+<button class="flex items-center gap-4 bg-surface-container-highest text-primary p-4 font-headline text-xs font-bold tracking-widest uppercase hover:bg-primary hover:text-on-primary transition-all">
+<span class="material-symbols-outlined">flag</span>
+                    Flag for Review
+                </button>
+<button class="flex items-center gap-4 border border-outline-variant text-secondary p-4 font-headline text-xs font-bold tracking-widest uppercase hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined">download</span>
+                    Download Payload
+                </button>
+<div class="mt-auto pt-6 border-t border-outline-variant/30">
+<p class="text-[10px] text-secondary leading-tight italic">
+                        PROTOCOL_NOTE: Manual override recommended if internal_temp exceeds 90C.
+                    </p>
+</div>
+</section>
+</div>
+<!-- System Logs Feed (Contextual) -->
+<section class="mt-12 bg-surface-container-low">
+<div class="bg-surface-container-high px-6 py-3 flex justify-between items-center">
+<h3 class="font-headline text-xs font-bold uppercase tracking-widest text-on-surface">Recent Activity in WAREHOUSE_01</h3>
+<span class="text-[10px] font-headline text-tertiary">LIVE FEED</span>
+</div>
+<div class="divide-y divide-surface-container-highest">
+<div class="p-4 grid grid-cols-12 text-xs font-mono">
+<span class="col-span-2 text-secondary">04:11:58</span>
+<span class="col-span-1 text-tertiary">[OK]</span>
+<span class="col-span-9 text-on-surface-variant">Fan_Array_01 sequence initiation complete.</span>
+</div>
+<div class="p-4 grid grid-cols-12 text-xs font-mono bg-error-container/10">
+<span class="col-span-2 text-secondary">04:12:02</span>
+<span class="col-span-1 text-error">[ERR]</span>
+<span class="col-span-9 text-error-dim">Motor_Stall detected on Fan_Node_04. Current draw excessive.</span>
+</div>
+<div class="p-4 grid grid-cols-12 text-xs font-mono">
+<span class="col-span-2 text-secondary">04:12:05</span>
+<span class="col-span-1 text-primary">[INFO]</span>
+<span class="col-span-9 text-on-surface-variant">Switching to secondary cooling circuit... Request timed out.</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Mobile Nav (Fallback) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-zinc-950 border-t border-zinc-900 grid grid-cols-5 h-16 z-50">
+<button class="flex flex-col items-center justify-center text-zinc-500">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[8px] uppercase mt-1">Dash</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-100 bg-zinc-800 border-t-2 border-emerald-400">
+<span class="material-symbols-outlined">list_alt</span>
+<span class="text-[8px] uppercase mt-1">Logs</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-500">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[8px] uppercase mt-1">Telm</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-500">
+<span class="material-symbols-outlined">shield</span>
+<span class="text-[8px] uppercase mt-1">Shield</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-500">
+<span class="material-symbols-outlined">lan</span>
+<span class="text-[8px] uppercase mt-1">Node</span>
+</button>
+</nav>
+</body></html>

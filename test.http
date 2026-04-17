@@ -1,0 +1,34 @@
+### Register a new simulated node
+POST http://localhost:3000/api/nodes/register
+Content-Type: application/json
+
+{
+  "ownerName": "John Doe",
+  "nodeName": "Test Security Node",
+  "nodeType": "FIELD"
+}
+
+### Send telemetry payload to an ESP32 node
+# IMPORTANT: Replace the x-device-id and x-api-key headers 
+# with actual values returned from the internal DB!
+# Since we seeded `eco_node_warehouse_dev` via Prisma Seed, we can use it:
+POST http://localhost:3000/api/telemetry
+Content-Type: application/json
+x-device-id: eco_node_warehouse_dev
+x-api-key: eco_sk_warehouse_dev_123
+
+{
+  "internal_temp_c": 28.5,
+  "internal_pressure_hpa": 1002,
+  "external_temp_c": 32.1,
+  "fan_active": true,
+  "pump_active": false
+}
+
+### Verify Latest Cache
+GET http://localhost:3000/api/nodes/latest
+
+### Verify Historical Telemetry Map
+# Fetch the dynamically seeded warehouse node from the DB ID
+# (Replace the slug with an actual cuid if calling via curl)
+GET http://localhost:3000/api/nodes/storage_hub_1/telemetry?limit=10

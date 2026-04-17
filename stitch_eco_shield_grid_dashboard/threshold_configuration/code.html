@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ECO_SHIELD COMMAND - Threshold Configuration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#005f28",
+                        "surface-container-low": "#131316",
+                        "error-container": "#7f2737",
+                        "on-error-container": "#ff97a3",
+                        "error-dim": "#b95463",
+                        "surface-tint": "#c6c6c7",
+                        "on-error": "#490013",
+                        "on-tertiary-fixed": "#004a1d",
+                        "on-primary-fixed-variant": "#5a5c5d",
+                        "on-tertiary": "#00692c",
+                        "primary-fixed": "#e2e2e3",
+                        "on-secondary-container": "#b1c0d6",
+                        "tertiary-dim": "#5bf083",
+                        "on-tertiary-fixed-variant": "#006a2d",
+                        "surface-container-lowest": "#000000",
+                        "surface-dim": "#0e0e10",
+                        "tertiary": "#c5ffc9",
+                        "tertiary-fixed": "#6bff8f",
+                        "inverse-on-surface": "#565457",
+                        "on-primary": "#3f4041",
+                        "primary-container": "#454748",
+                        "on-surface": "#e7e4ec",
+                        "surface-container": "#19191d",
+                        "surface-container-high": "#1f1f24",
+                        "on-secondary-fixed-variant": "#4e5d6f",
+                        "surface": "#0e0e10",
+                        "secondary-fixed-dim": "#c6d6ec",
+                        "outline-variant": "#47474e",
+                        "surface-container-highest": "#25252b",
+                        "surface-variant": "#25252b",
+                        "primary": "#c6c6c7",
+                        "on-surface-variant": "#acaab1",
+                        "tertiary-container": "#6bff8f",
+                        "surface-bright": "#2b2c32",
+                        "secondary-dim": "#909fb4",
+                        "primary-fixed-dim": "#d4d4d5",
+                        "on-primary-container": "#d0d0d1",
+                        "background": "#0e0e10",
+                        "tertiary-fixed-dim": "#5bf083",
+                        "primary-dim": "#b8b9ba",
+                        "on-primary-fixed": "#3e4041",
+                        "secondary-container": "#2e3c4e",
+                        "on-background": "#e7e4ec",
+                        "secondary": "#909fb4",
+                        "secondary-fixed": "#d4e4fa",
+                        "inverse-surface": "#fcf8fb",
+                        "inverse-primary": "#5e5f60",
+                        "error": "#ec7c8a",
+                        "on-secondary": "#122131",
+                        "on-secondary-fixed": "#324052",
+                        "outline": "#75757c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0e0e10;
+            color: #e7e4ec;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-metallic {
+            background: linear-gradient(145deg, #c6c6c7 0%, #454748 100%);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 bg-zinc-950 flex flex-col py-4 shrink-0 overflow-y-auto">
+<div class="px-6 mb-8">
+<h2 class="text-zinc-100 font-bold font-headline tracking-widest text-lg">NODE_01</h2>
+<p class="text-[10px] text-zinc-500 font-medium uppercase tracking-[0.2em]">SECTOR_7G</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-6 py-3 text-xs font-medium uppercase tracking-wider text-zinc-500 hover:bg-zinc-900 transition-all" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">grid_view</span> DASHBOARD
+            </a>
+<a class="flex items-center px-6 py-3 text-xs font-medium uppercase tracking-wider bg-zinc-800 text-zinc-100 border-l-2 border-zinc-300 transition-all translate-x-1" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">tune</span> THRESHOLDS
+            </a>
+<a class="flex items-center px-6 py-3 text-xs font-medium uppercase tracking-wider text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900 transition-all" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">history_edu</span> LOGS
+            </a>
+<a class="flex items-center px-6 py-3 text-xs font-medium uppercase tracking-wider text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900 transition-all" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">hub</span> NETWORK
+            </a>
+<a class="flex items-center px-6 py-3 text-xs font-medium uppercase tracking-wider text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900 transition-all" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">terminal</span> TERMINAL
+            </a>
+</nav>
+<div class="px-6 py-4 mt-auto">
+<div class="p-3 bg-surface-container-high">
+<p class="text-[10px] text-zinc-500 uppercase mb-1">Status</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-tertiary"></div>
+<span class="text-xs font-mono text-zinc-300">SECURE</span>
+</div>
+</div>
+</div>
+</aside>
+<div class="flex flex-col flex-1 min-w-0">
+<!-- TopAppBar Shell -->
+<header class="bg-zinc-950 flex justify-between items-center px-6 py-3 w-full sticky top-0 z-50">
+<div class="font-['Space_Grotesk'] text-xl font-bold uppercase tracking-widest text-zinc-300">
+                ECO_SHIELD COMMAND
+            </div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex gap-6">
+<a class="text-xs font-medium uppercase tracking-widest text-zinc-500 hover:bg-zinc-800 transition-colors py-1 px-2" href="#">SENSORS</a>
+<a class="text-xs font-medium uppercase tracking-widest text-zinc-500 hover:bg-zinc-800 transition-colors py-1 px-2" href="#">ALERTS</a>
+<a class="text-xs font-medium uppercase tracking-widest text-zinc-100 border-b-2 border-zinc-300 pb-1 px-2" href="#">SYSTEM</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-1 text-zinc-500 hover:bg-zinc-800 transition-colors">
+<span class="material-symbols-outlined text-lg">settings</span>
+</button>
+<button class="p-1 text-zinc-500 hover:bg-zinc-800 transition-colors">
+<span class="material-symbols-outlined text-lg">power_settings_new</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Global Status Bar -->
+<div class="h-1 w-full bg-tertiary shrink-0"></div>
+<!-- Main Content -->
+<main class="flex-1 p-8 overflow-y-auto">
+<div class="max-w-6xl mx-auto">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="font-headline text-3xl font-bold text-primary tracking-tight">THRESHOLD_CONFIG</h1>
+<p class="text-secondary text-sm mt-1 uppercase tracking-widest">Global environmental alert parameters</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-2 text-xs font-bold uppercase tracking-wider text-primary border border-outline-variant hover:bg-zinc-800 transition-colors">
+                            Reset to Defaults
+                        </button>
+<button class="px-6 py-2 text-xs font-bold uppercase tracking-wider text-on-primary btn-metallic hover:opacity-90 transition-opacity">
+                            Save Changes
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Warehouse Climate Section -->
+<section class="space-y-6">
+<div class="bg-surface-container-low p-1">
+<div class="bg-surface-container-high px-4 py-2 flex items-center justify-between">
+<h3 class="font-headline text-sm font-bold tracking-widest uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">thermostat</span>
+                                    Warehouse Climate
+                                </h3>
+<span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 font-bold uppercase">Zone_A</span>
+</div>
+</div>
+<!-- Threshold Item: High Temperature -->
+<div class="bg-surface-container-low group">
+<div class="p-6 space-y-6">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-sm font-bold text-zinc-100 mb-1">High Temperature Alert</h4>
+<p class="text-xs text-zinc-500">Triggers when warehouse core exceeds safe thermal range.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-zinc-800 peer-focus:outline-none rounded-none peer peer-checked:after:translate-x-full peer-checked:after:border-zinc-300 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-zinc-300 after:border-zinc-300 after:h-5 after:w-5 after:transition-all peer-checked:bg-tertiary"></div>
+</label>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 block">Critical Threshold</label>
+<div class="relative group/input">
+<input class="w-full bg-surface-container-highest border-none text-zinc-100 p-3 font-mono focus:ring-0 focus:ring-offset-0 peer" type="number" value="25"/>
+<span class="absolute right-3 top-3 text-zinc-500 font-mono">°C</span>
+<div class="absolute left-0 top-0 bottom-0 w-0.5 bg-primary opacity-0 peer-focus:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 block">Severity Level</label>
+<select class="w-full bg-surface-container-highest border-none text-zinc-100 p-3 text-xs uppercase font-bold focus:ring-0">
+<option>Info</option>
+<option>Warning</option>
+<option selected="">Critical</option>
+</select>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/30 flex justify-end">
+<button class="flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition-all">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                                        Test Trigger
+                                    </button>
+</div>
+</div>
+</div>
+<!-- Technical Readout Sub-Module -->
+<div class="bg-surface-container-lowest p-4 font-mono text-[10px] text-tertiary/70 leading-tight">
+<p>&gt; SENSOR_ID: CLMT_004 ACTIVE</p>
+<p>&gt; POLLING_INTERVAL: 500MS</p>
+<p>&gt; LAST_RECALIBRATION: 2024-05-12 14:00:00</p>
+<div class="mt-2 flex gap-1">
+<div class="h-1 w-8 bg-tertiary/30"></div>
+<div class="h-1 w-8 bg-tertiary/30"></div>
+<div class="h-1 w-8 bg-tertiary/30"></div>
+<div class="h-1 w-4 bg-tertiary"></div>
+</div>
+</div>
+</section>
+<!-- Field Health Section -->
+<section class="space-y-6">
+<div class="bg-surface-container-low p-1">
+<div class="bg-surface-container-high px-4 py-2 flex items-center justify-between">
+<h3 class="font-headline text-sm font-bold tracking-widest uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">eco</span>
+                                    Field Health
+                                </h3>
+<span class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 font-bold uppercase">Sector_07</span>
+</div>
+</div>
+<!-- Threshold Item: Air Quality -->
+<div class="bg-surface-container-low group">
+<div class="p-6 space-y-6">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-sm font-bold text-zinc-100 mb-1">Air Quality Alert</h4>
+<p class="text-xs text-zinc-500">CO2 concentration threshold for field personnel.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-zinc-800 peer-focus:outline-none rounded-none peer peer-checked:after:translate-x-full peer-checked:after:border-zinc-300 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-zinc-300 after:border-zinc-300 after:h-5 after:w-5 after:transition-all peer-checked:bg-tertiary"></div>
+</label>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 block">Critical Threshold</label>
+<div class="relative group/input">
+<input class="w-full bg-surface-container-highest border-none text-zinc-100 p-3 font-mono focus:ring-0 focus:ring-offset-0 peer" type="number" value="600"/>
+<span class="absolute right-3 top-3 text-zinc-500 font-mono uppercase">ppm</span>
+<div class="absolute left-0 top-0 bottom-0 w-0.5 bg-primary opacity-0 peer-focus:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 block">Severity Level</label>
+<select class="w-full bg-surface-container-highest border-none text-zinc-100 p-3 text-xs uppercase font-bold focus:ring-0">
+<option>Info</option>
+<option selected="">Warning</option>
+<option>Critical</option>
+</select>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/30 flex justify-end">
+<button class="flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition-all">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                                        Test Trigger
+                                    </button>
+</div>
+</div>
+</div>
+<!-- Threshold Item: Soil Moisture -->
+<div class="bg-surface-container-low group">
+<div class="p-6 space-y-6">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-sm font-bold text-zinc-100 mb-1">Low Soil Moisture Alert</h4>
+<p class="text-xs text-zinc-500">Hydration minimum for regional vegetative shield.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-zinc-800 peer-focus:outline-none rounded-none peer peer-checked:after:translate-x-full peer-checked:after:border-zinc-300 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-zinc-300 after:border-zinc-300 after:h-5 after:w-5 after:transition-all peer-checked:bg-tertiary"></div>
+</label>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 block">Minimum Threshold</label>
+<div class="relative group/input">
+<input class="w-full bg-surface-container-highest border-none text-zinc-100 p-3 font-mono focus:ring-0 focus:ring-offset-0 peer" type="number" value="12"/>
+<span class="absolute right-3 top-3 text-zinc-500 font-mono">%</span>
+<div class="absolute left-0 top-0 bottom-0 w-0.5 bg-primary opacity-0 peer-focus:opacity-100 transition-opacity"></div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 block">Severity Level</label>
+<select class="w-full bg-surface-container-highest border-none text-zinc-100 p-3 text-xs uppercase font-bold focus:ring-0">
+<option selected="">Info</option>
+<option>Warning</option>
+<option>Critical</option>
+</select>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/30 flex justify-end">
+<button class="flex items-center gap-2 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 transition-all">
+<span class="material-symbols-outlined text-sm">bolt</span>
+                                        Test Trigger
+                                    </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Summary Card -->
+<div class="mt-12 bg-surface-container-highest/50 p-6 flex items-center gap-6">
+<div class="p-4 bg-tertiary-container/10 border-l-4 border-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-4xl">verified_user</span>
+</div>
+<div>
+<h5 class="text-sm font-bold text-zinc-100 uppercase tracking-widest">Configuration Audit Log</h5>
+<p class="text-xs text-zinc-500 mt-1 max-w-xl">System maintains an immutable record of threshold adjustments. Ensure all parameters align with Directive 44-B Environmental Safety Protocols. No pending conflicts detected in Global Grid Node.</p>
+</div>
+<div class="ml-auto flex flex-col items-end">
+<span class="text-[10px] text-zinc-500 uppercase">Last Modified</span>
+<span class="font-mono text-zinc-300">2024.10.24 // 09:42 UTC</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Mobile Navigation Shell -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-zinc-950 flex justify-around py-3 px-6 z-50">
+<button class="flex flex-col items-center gap-1 text-zinc-500">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[9px] font-bold uppercase">Main</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-100">
+<span class="material-symbols-outlined">tune</span>
+<span class="text-[9px] font-bold uppercase">Config</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-500">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="text-[9px] font-bold uppercase">Logs</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-zinc-500">
+<span class="material-symbols-outlined">hub</span>
+<span class="text-[9px] font-bold uppercase">Net</span>
+</button>
+</nav>
+</body></html>

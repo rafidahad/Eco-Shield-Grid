@@ -1,0 +1,119 @@
+Here is the complete, highly structured Product Requirements Document (PRD). 
+
+I have written this specifically in a format that AI coding agents (like Cursor, Devin, or GitHub Copilot Workspace) understand perfectly. It clearly defines the strict constraints, API contracts, data models, and component architecture so the agent won't hallucinate or build the wrong stack.
+
+Simply copy the text below the line and paste it directly into your AI coding tool's main prompt or context window.
+
+---
+
+# Product Requirements Document (PRD): Eco-Shield Grid Dashboard
+
+## 1. Project Overview
+**Name:** Eco-Shield Grid Command Center
+**Description:** A real-time IoT monitoring dashboard for a "Smart Green Village" prototype. The system ingests HTTP POST telemetry data from two ESP32 microcontroller nodes (Warehouse Climate & Field Monitor), stores it securely, and visualizes it via a responsive web interface.
+
+## 2. Tech Stack & Architecture
+* **Framework:** Next.js 14 (App Router, strict TypeScript)
+* **Database:** PostgreSQL
+* **ORM:** Prisma
+* **Styling:** Tailwind CSS
+* **UI Components:** shadcn/ui (Cards, Badges, Tables, Alerts)
+* **Data Visualization:** Recharts (responsive time-series charts)
+* **Icons:** Lucide React
+
+## 3. Database Schema (Prisma)
+The agent must initialize Prisma with the following schema. Use `JSONB` for the payload to allow flexible data structures from different ESP32 nodes.
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Node {
+  id          String      @id // e.g., "storage_hub_1"
+  name        String      // e.g., "Warehouse Climate Controller"
+  type        String      // e.g., "WAREHOUSE" or "FIELD"
+  isActive    Boolean     @default(true)
+  telemetry   Telemetry[]
+}
+
+model Telemetry {
+  id        String   @id @default(cuid())
+  nodeId    String
+  node      Node     @relation(fields: [nodeId], references: [id], onDelete: Cascade)
+  payload   Json     // Stores flexible ESP32 sensor data
+  createdAt DateTime @default(now())
+
+  @@index([nodeId, createdAt])
+}
+```
+
+## 4. API Endpoints & Data Contracts
+
+### 4.1. Hardware Ingestion API
+* **Route:** `POST /api/telemetry`
+* **Security:** Must validate the `x-api-key` header against `process.env.ESP32_API_KEY`. Return `401 Unauthorized` if invalid.
+* **Logic:** Extract `node_id` from the body. Ensure the Node exists (or upsert it). Save the remaining body object into the `payload` JSON field of a new `Telemetry` record.
+
+**Expected Ingestion Payloads:**
+*Node 1 (Storage Hub):*
+```json
+{
+  "node_id": "storage_hub_1",
+  "internal_temp_c": 24.5,
+  "internal_pressure_hpa": 1012,
+  "external_temp_c": 31.0,
+  "fan_active": true,
+  "pump_active": false
+}
+```
+*Node 2 (Field Monitor):*
+```json
+{
+  "node_id": "field_monitor_1",
+  "air_quality_ppm": 450,
+  "soil_moisture_percent": 35,
+  "ambient_temp_c": 31.0,
+  "ambient_humidity": 65
+}
+```
+
+### 4.2. Dashboard APIs (Frontend Consumption)
+* **Route 1:** `GET /api/nodes` -> Returns an array of all active nodes, joined with their single most recent telemetry payload (for real-time status cards).
+* **Route 2:** `GET /api/nodes/[id]/history` -> Returns an array of the last 50 telemetry payloads for a specific node, ordered chronologically (for Recharts graphs).
+
+## 5. Frontend UI/UX Requirements
+
+### 5.1. Layout & Styling Constraints
+* **Theme:** Dark mode preferred (command center aesthetic). Use Tailwind zinc/slate color palette.
+* **Responsiveness:** Must use CSS Grid/Flexbox to be fully functional on mobile (single column) and desktop (multi-column).
+
+### 5.2. Core Components
+* **Global Header:** Title ("Eco-Shield Grid"), live clock, and a connection status indicator (green dot if telemetry was received in the last 60 seconds).
+* **System Overview (Dashboard):**
+    * **Node 1 Card (Warehouse):** Display large typography for `internal_temp_c`. Show dynamic badges for "Fan: ON/OFF" and "Pump: ON/OFF" based on the boolean values.
+    * **Node 2 Card (Field):** Display large typography for `soil_moisture_percent`. Display `air_quality_ppm` with conditional text colors (Green < 300, Yellow 300-600, Red > 600).
+* **Alerts Panel:** A dedicated section that renders a warning banner if `internal_temp_c` > 25°C OR `air_quality_ppm` > 600.
+* **Data Visualization (Charts):**
+    * Implement two `<LineChart>` components using Recharts.
+    * Chart 1: "Warehouse Climate" mapping `internal_temp_c` vs. `createdAt`.
+    * Chart 2: "Soil & Air Health" mapping `soil_moisture_percent` vs. `createdAt`.
+
+## 6. Implementation Instructions for the AI Agent
+1.  Initialize a Next.js App Router project with Tailwind and TypeScript.
+2.  Install `prisma`, `@prisma/client`, `recharts`, `lucide-react`, and configure `shadcn/ui`.
+3.  Implement the Prisma schema and create a seed script (`prisma/seed.ts`) that initializes the two required nodes (`storage_hub_1` and `field_monitor_1`).
+4.  Build the backend `app/api/...` routes exactly as defined in Section 4. Ensure error handling (500s, 400s) is strictly typed.
+5.  Build the frontend dashboard in `app/page.tsx`. Use Next.js Server Components to fetch initial data, and Client Components (with `useEffect` polling or SWR) to auto-refresh the data every 5 seconds.
+6.  Ensure no placeholder text remains in the final build. Use proper TypeScript interfaces for the JSON payloads.
+
+## 7. Environment Variables Required
+```env
+DATABASE_URL="postgresql://user:password@localhost:5432/ecoshield"
+ESP32_API_KEY="super_secret_diorama_key_123"
+```

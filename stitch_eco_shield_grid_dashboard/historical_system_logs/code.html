@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TACTICAL_NODE_01 - Historical Logs</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-dim": "#909fb4",
+                    "tertiary-dim": "#5bf083",
+                    "on-primary-fixed-variant": "#5a5c5d",
+                    "on-tertiary-fixed-variant": "#006a2d",
+                    "on-secondary": "#122131",
+                    "inverse-on-surface": "#565457",
+                    "surface-container-highest": "#25252b",
+                    "primary-fixed-dim": "#d4d4d5",
+                    "inverse-surface": "#fcf8fb",
+                    "surface-bright": "#2b2c32",
+                    "background": "#0e0e10",
+                    "surface-variant": "#25252b",
+                    "on-tertiary": "#00692c",
+                    "primary-container": "#454748",
+                    "on-tertiary-container": "#005f28",
+                    "surface-container-lowest": "#000000",
+                    "surface-container-high": "#1f1f24",
+                    "on-secondary-container": "#b1c0d6",
+                    "error-container": "#7f2737",
+                    "secondary-container": "#2e3c4e",
+                    "on-primary": "#3f4041",
+                    "on-tertiary-fixed": "#004a1d",
+                    "on-error-container": "#ff97a3",
+                    "primary-fixed": "#e2e2e3",
+                    "tertiary-fixed": "#6bff8f",
+                    "on-error": "#490013",
+                    "surface-container": "#19191d",
+                    "primary": "#c6c6c7",
+                    "on-surface": "#e7e4ec",
+                    "error-dim": "#b95463",
+                    "outline": "#75757c",
+                    "on-primary-container": "#d0d0d1",
+                    "error": "#ec7c8a",
+                    "primary-dim": "#b8b9ba",
+                    "outline-variant": "#47474e",
+                    "tertiary-container": "#6bff8f",
+                    "secondary-fixed-dim": "#c6d6ec",
+                    "on-secondary-fixed-variant": "#4e5d6f",
+                    "tertiary-fixed-dim": "#5bf083",
+                    "tertiary": "#c5ffc9",
+                    "surface-tint": "#c6c6c7",
+                    "surface-container-low": "#131316",
+                    "secondary": "#909fb4",
+                    "surface-dim": "#0e0e10",
+                    "secondary-fixed": "#d4e4fa",
+                    "on-primary-fixed": "#3e4041",
+                    "inverse-primary": "#5e5f60",
+                    "on-surface-variant": "#acaab1",
+                    "on-secondary-fixed": "#324052",
+                    "surface": "#0e0e10",
+                    "on-background": "#e7e4ec"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "0px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .headline { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .mono { font-family: 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', monospace; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0e0e10; }
+        ::-webkit-scrollbar-thumb { background: #1f1f24; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full border-t-4 border-tertiary bg-[#0e0e10] z-50 flex justify-between items-center px-6 py-3 w-full">
+<div class="text-xl font-bold tracking-tighter text-primary">TACTICAL_NODE_01</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-[10px] uppercase tracking-widest font-bold text-secondary hover:text-primary transition-colors duration-150" href="#">SENSORS</a>
+<a class="text-[10px] uppercase tracking-widest font-bold text-secondary hover:text-primary transition-colors duration-150" href="#">NODES</a>
+<a class="text-[10px] uppercase tracking-widest font-bold text-secondary hover:text-primary transition-colors duration-150" href="#">NETWORK</a>
+<a class="text-[10px] uppercase tracking-widest font-bold text-secondary hover:text-primary transition-colors duration-150" href="#">THREATS</a>
+</nav>
+<div class="flex items-center space-x-4">
+<button class="text-primary hover:bg-[#1f1f24] p-2 transition-colors duration-150">
+<span class="material-symbols-outlined">schedule</span>
+</button>
+<button class="text-primary hover:bg-[#1f1f24] p-2 transition-colors duration-150">
+<span class="material-symbols-outlined">notifications_active</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-background flex flex-col pt-16 z-40">
+<div class="px-6 py-6 bg-surface-container-high mb-2">
+<div class="text-lg font-black text-primary headline">OPERATOR_01</div>
+<div class="text-[10px] uppercase tracking-widest text-secondary-dim font-bold">SECTOR_7G</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center px-6 py-4 text-secondary-dim hover:bg-surface-container-high/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="text-xs uppercase tracking-wider font-semibold">Dashboard</span>
+</a>
+<a class="flex items-center px-6 py-4 text-secondary-dim hover:bg-surface-container-high/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">hub</span>
+<span class="text-xs uppercase tracking-wider font-semibold">Topology</span>
+</a>
+<a class="flex items-center px-6 py-4 bg-surface-container-high text-primary border-l-2 border-primary transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">list_alt</span>
+<span class="text-xs uppercase tracking-wider font-semibold">Logs</span>
+</a>
+<a class="flex items-center px-6 py-4 text-secondary-dim hover:bg-surface-container-high/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">shield</span>
+<span class="text-xs uppercase tracking-wider font-semibold">Security</span>
+</a>
+<a class="flex items-center px-6 py-4 text-secondary-dim hover:bg-surface-container-high/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="text-xs uppercase tracking-wider font-semibold">Config</span>
+</a>
+</nav>
+<div class="p-6 border-t border-outline-variant/10">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 bg-surface-container-highest border border-outline-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-sm">person</span>
+</div>
+<div class="text-[10px] font-bold text-secondary uppercase">System Operator</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-20 p-8 min-h-screen">
+<!-- Dashboard Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+<div>
+<div class="text-[10px] uppercase tracking-[0.2em] text-tertiary font-bold mb-2">SYSTEM_ARCHIVE_RELIABILITY_PROTOCOL</div>
+<h1 class="text-4xl font-bold headline tracking-tight text-primary uppercase">System Logs</h1>
+<div class="flex items-center mt-2 space-x-4">
+<span class="mono text-sm text-secondary-dim"><span class="text-tertiary">14,209</span> TOTAL_ENTRIES</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="mono text-sm text-secondary-dim">NODE: GLOBAL_GRID</span>
+</div>
+</div>
+<div class="flex items-center space-x-2">
+<div class="flex bg-surface-container-low p-1 border border-outline-variant/20">
+<button class="px-4 py-2 text-[10px] font-bold uppercase tracking-widest bg-surface-container-highest text-primary">Last 24h</button>
+<button class="px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors">7 Days</button>
+<button class="px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors">Custom</button>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 text-[10px] font-black uppercase tracking-widest hover:bg-white transition-colors flex items-center">
+<span class="material-symbols-outlined text-sm mr-2">download</span>
+                    Export Logs
+                </button>
+</div>
+</div>
+<!-- Filter Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-0.5 bg-outline-variant/20 border border-outline-variant/20 mb-8">
+<div class="bg-surface-container-low p-4">
+<label class="text-[10px] uppercase font-bold text-secondary-dim mb-3 block tracking-widest">Node Source</label>
+<div class="relative">
+<select class="w-full bg-surface-container-high border-none text-xs text-primary font-medium focus:ring-1 focus:ring-primary py-2 px-3 appearance-none">
+<option>ALL_SOURCES</option>
+<option>WAREHOUSE_01</option>
+<option>FIELD_ARRAY_B</option>
+<option>SYSTEM_CORE</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-secondary pointer-events-none text-lg">expand_more</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-4">
+<label class="text-[10px] uppercase font-bold text-secondary-dim mb-3 block tracking-widest">Severity</label>
+<div class="flex space-x-2">
+<button class="flex-1 bg-surface-container-high text-[10px] font-bold text-primary py-2 border border-outline-variant/30">INFO</button>
+<button class="flex-1 bg-surface-container-high text-[10px] font-bold text-secondary py-2 border border-outline-variant/30 hover:border-primary/50 transition-colors">WARN</button>
+<button class="flex-1 bg-surface-container-high text-[10px] font-bold text-secondary py-2 border border-outline-variant/30 hover:border-primary/50 transition-colors">CRIT</button>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 md:col-span-2">
+<label class="text-[10px] uppercase font-bold text-secondary-dim mb-3 block tracking-widest">Search Metadata</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2 text-secondary text-lg">search</span>
+<input class="w-full bg-surface-container-high border-none text-xs text-primary font-medium focus:ring-1 focus:ring-primary py-2 pl-10 pr-3" placeholder="FILTER_BY_ID_OR_EVENT_TYPE..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Tactical Data Table -->
+<div class="bg-surface-container-low overflow-hidden border border-outline-variant/20">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high">
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-secondary-dim border-b border-outline-variant/20">Timestamp</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-secondary-dim border-b border-outline-variant/20">Source Node</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-secondary-dim border-b border-outline-variant/20">Event Type</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-secondary-dim border-b border-outline-variant/20">Status</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-secondary-dim border-b border-outline-variant/20">Details</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest font-black text-secondary-dim border-b border-outline-variant/20 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-highest/50 transition-colors">
+<td class="px-6 py-4 mono text-[11px] text-primary">2023-11-24 14:02:11.004</td>
+<td class="px-6 py-4 text-xs font-bold text-secondary tracking-tight">FIELD_UNIT_882</td>
+<td class="px-6 py-4 text-xs font-medium text-primary">ENV_SHIELD_SYNC</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center bg-tertiary/10 text-tertiary text-[9px] font-black uppercase tracking-tighter px-2 py-0.5 border border-tertiary/30">
+<span class="w-1.5 h-1.5 bg-tertiary mr-1.5"></span> OK
+                                </span>
+</td>
+<td class="px-6 py-4 text-xs text-secondary-dim max-w-xs truncate italic">Atmospheric stabilizer frequency aligned to grid standard.</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">open_in_new</span></button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-surface-container-high/20 hover:bg-surface-container-highest/50 transition-colors">
+<td class="px-6 py-4 mono text-[11px] text-primary">2023-11-24 13:58:45.912</td>
+<td class="px-6 py-4 text-xs font-bold text-secondary tracking-tight">SYSTEM_CORE_PRIME</td>
+<td class="px-6 py-4 text-xs font-medium text-primary">PWR_SURGE_DETECT</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center bg-error/10 text-error text-[9px] font-black uppercase tracking-tighter px-2 py-0.5 border border-error/30">
+<span class="w-1.5 h-1.5 bg-error mr-1.5"></span> Critical
+                                </span>
+</td>
+<td class="px-6 py-4 text-xs text-secondary-dim max-w-xs truncate italic">Unidentified voltage spike in Subsector 4. Cooling failure imminent.</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">open_in_new</span></button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-highest/50 transition-colors">
+<td class="px-6 py-4 mono text-[11px] text-primary">2023-11-24 13:45:00.000</td>
+<td class="px-6 py-4 text-xs font-bold text-secondary tracking-tight">WAREHOUSE_01</td>
+<td class="px-6 py-4 text-xs font-medium text-primary">THERMAL_FLUCT</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center bg-yellow-400/10 text-yellow-400 text-[9px] font-black uppercase tracking-tighter px-2 py-0.5 border border-yellow-400/30">
+<span class="w-1.5 h-1.5 bg-yellow-400 mr-1.5"></span> Warning
+                                </span>
+</td>
+<td class="px-6 py-4 text-xs text-secondary-dim max-w-xs truncate italic">Temperature exceeded baseline +4C. Secondary fans engaged.</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">open_in_new</span></button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-surface-container-high/20 hover:bg-surface-container-highest/50 transition-colors">
+<td class="px-6 py-4 mono text-[11px] text-primary">2023-11-24 13:12:33.221</td>
+<td class="px-6 py-4 text-xs font-bold text-secondary tracking-tight">FIELD_ARRAY_B</td>
+<td class="px-6 py-4 text-xs font-medium text-primary">SENSOR_TX_PASS</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center bg-tertiary/10 text-tertiary text-[9px] font-black uppercase tracking-tighter px-2 py-0.5 border border-tertiary/30">
+<span class="w-1.5 h-1.5 bg-tertiary mr-1.5"></span> OK
+                                </span>
+</td>
+<td class="px-6 py-4 text-xs text-secondary-dim max-w-xs truncate italic">Weekly packet transmission successful. Integrity 99.8%.</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">open_in_new</span></button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-highest/50 transition-colors">
+<td class="px-6 py-4 mono text-[11px] text-primary">2023-11-24 12:55:01.098</td>
+<td class="px-6 py-4 text-xs font-bold text-secondary tracking-tight">GATEWAY_ROUTER_0</td>
+<td class="px-6 py-4 text-xs font-medium text-primary">HANDSHAKE_LATENCY</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center bg-yellow-400/10 text-yellow-400 text-[9px] font-black uppercase tracking-tighter px-2 py-0.5 border border-yellow-400/30">
+<span class="w-1.5 h-1.5 bg-yellow-400 mr-1.5"></span> Warning
+                                </span>
+</td>
+<td class="px-6 py-4 text-xs text-secondary-dim max-w-xs truncate italic">Latency spike of 450ms detected on cross-sector handshake.</td>
+<td class="px-6 py-4 text-right">
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">open_in_new</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-outline-variant/20 flex items-center justify-between">
+<div class="text-[10px] font-bold text-secondary-dim uppercase tracking-widest">Page 1 of 422</div>
+<div class="flex space-x-1">
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-high border border-outline-variant/30 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-primary text-on-primary border border-primary text-[10px] font-black">1</button>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-high border border-outline-variant/30 text-secondary hover:text-primary transition-colors text-[10px] font-black">2</button>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-high border border-outline-variant/30 text-secondary hover:text-primary transition-colors text-[10px] font-black">3</button>
+<button class="w-8 h-8 flex items-center justify-center bg-surface-container-high border border-outline-variant/30 text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Stats/Diagnostics -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+<div class="bg-surface-container-low p-6 border-l-2 border-tertiary">
+<div class="text-[10px] font-black text-secondary-dim uppercase tracking-widest mb-1">HEALTH_STATUS</div>
+<div class="headline text-2xl text-primary">99.98% GRID_UPTIME</div>
+<div class="mt-4 h-1 bg-surface-container-highest w-full overflow-hidden">
+<div class="h-full bg-tertiary w-[99.98%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 border-l-2 border-secondary-dim">
+<div class="text-[10px] font-black text-secondary-dim uppercase tracking-widest mb-1">LOG_INGESTION</div>
+<div class="headline text-2xl text-primary">42.4 KB/s STREAM</div>
+<div class="mt-4 flex space-x-1 items-end h-4">
+<div class="w-1 bg-tertiary h-2"></div>
+<div class="w-1 bg-tertiary h-3"></div>
+<div class="w-1 bg-tertiary h-1"></div>
+<div class="w-1 bg-tertiary h-4"></div>
+<div class="w-1 bg-tertiary h-3"></div>
+<div class="w-1 bg-tertiary h-2"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 border-l-2 border-error">
+<div class="text-[10px] font-black text-secondary-dim uppercase tracking-widest mb-1">ANOMALY_INDEX</div>
+<div class="headline text-2xl text-error">0.02 LOW_RISK</div>
+<div class="text-[10px] mt-4 mono text-secondary-dim uppercase">Last scan: 2 min ago</div>
+</div>
+</div>
+</main>
+<!-- Bottom Status Strip -->
+<div class="fixed bottom-0 w-full h-1 bg-tertiary z-50"></div>
+</body></html>

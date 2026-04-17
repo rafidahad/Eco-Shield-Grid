@@ -1,27 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 240 10% 3.9%;
+    --foreground: 257 15% 91%;
+    --card: 240 10% 5%;
+    --card-foreground: 257 15% 91%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 78%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 214 20% 64%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 12.9%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 349 53% 32%;
+    --destructive-foreground: 353 100% 80%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --radius: 0rem;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  .headline-font {
+    font-family: 'Space Grotesk', sans-serif;
   }
+  
+  .glass-card {
+    @apply bg-tactical-surface border border-white/5 backdrop-blur-md;
+  }
+
+  .tactical-border {
+    @apply border-b border-r border-white/10;
+  }
+
+  .glow-cyan {
+    filter: drop-shadow(0 0 8px rgba(197, 255, 201, 0.3));
+  }
+
+  .glow-red {
+    filter: drop-shadow(0 0 8px rgba(236, 124, 138, 0.3));
+  }
+}
+
+/* Custom Tactical Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black/20;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 hover:bg-white/20 transition-colors;
 }
