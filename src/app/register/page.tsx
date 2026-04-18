@@ -60,78 +60,157 @@ export default function RegisterPage() {
 
     const doc = new jsPDF();
     const { deviceId, apiKey } = result;
-    const { nodeName, nodeType } = formData;
+    const { nodeName, nodeType, ownerName } = formData;
+    const timestamp = new Date().toLocaleString();
 
-    // Header
-    doc.setFillColor(15, 23, 42); // slate-950
-    doc.rect(0, 0, 210, 40, "F");
+    // --- Page 1: Credentials & Diagrams ---
+    // Header Banner
+    doc.setFillColor(5, 10, 20); // Deep Space
+    doc.rect(0, 0, 210, 45, "F");
     
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(22);
+    doc.setTextColor(197, 255, 201); // Tactical Accent (Green)
+    doc.setFontSize(26);
     doc.setFont("helvetica", "bold");
-    doc.text("SJS ECO-SHIELD GRID", 20, 25);
+    doc.text("ECO-SHIELD GRID", 20, 25);
     doc.setFontSize(10);
-    doc.text("Official Node Configuration Blueprint", 20, 32);
-
-    // Node Info
-    doc.setTextColor(15, 23, 42);
-    doc.setFontSize(16);
-    doc.text("Device Credentials", 20, 55);
-    
-    doc.setFontSize(12);
     doc.setFont("helvetica", "normal");
-    doc.text(`Node Name: ${nodeName}`, 20, 65);
-    doc.text(`Environment: ${nodeType}`, 20, 72);
+    doc.text("TACTICAL INFRASTRUCTURE ENROLLMENT // CONFIGURATION BLUEPRINT", 20, 34);
+    doc.text(`GENERATED: ${timestamp}`, 190, 34, { align: "right" });
 
-    // Credentials Box
-    doc.setDrawColor(200, 200, 200);
-    doc.setFillColor(248, 250, 252); // slate-50
-    doc.roundedRect(20, 80, 170, 40, 3, 3, "FD");
+    // Section 1: Identity
+    doc.setTextColor(15, 23, 42);
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("I. SYSTEM IDENTITY", 20, 60);
+    doc.setDrawColor(197, 255, 201);
+    doc.line(20, 62, 190, 62);
+
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Node Name:    ${nodeName.toUpperCase()}`, 25, 72);
+    doc.text(`Operator:     ${ownerName}`, 25, 79);
+    doc.text(`Environment:  ${nodeType === 'WAREHOUSE' ? 'WAREHOUSE_LOGISTICS' : 'AGRICULTURAL_FIELD'}`, 25, 86);
+
+    // Section 2: Security Credentials
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("II. SECURITY CREDENTIALS", 20, 105);
+    doc.line(20, 107, 190, 107);
+
+    doc.setFillColor(248, 250, 252);
+    doc.setDrawColor(15, 23, 42);
+    doc.roundedRect(20, 115, 170, 35, 2, 2, "FD");
 
     doc.setFont("courier", "bold");
-    doc.setFontSize(14);
-    doc.text(`DEVICE ID: ${deviceId}`, 30, 95);
-    doc.text(`API KEY:   ${apiKey}`, 30, 105);
+    doc.setFontSize(13);
+    doc.text(`DEVICE_ID: ${deviceId}`, 30, 128);
+    doc.text(`API_KEY:   ${apiKey}`, 30, 138);
 
-    // Instructions
+    doc.setFont("helvetica", "italic");
+    doc.setFontSize(9);
+    doc.setTextColor(100, 116, 139);
+    doc.text("WARNING: These keys authorize data transmission. Keep them secure.", 105, 145, { align: "center" });
+
+    // Section 3: Hardware Pinout
+    doc.setTextColor(15, 23, 42);
+    doc.setFontSize(14);
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(16);
-    doc.text("Hardware Configuration", 20, 135);
-    
+    doc.text("III. HARDWARE INTERFACE GUIDE", 20, 165);
+    doc.line(20, 167, 190, 167);
+
     doc.setFontSize(11);
     doc.setFont("helvetica", "normal");
     
     if (nodeType === "WAREHOUSE") {
-      doc.text("Sensors Required: 2x DHT11", 20, 145);
-      doc.text("- Internal DHT11: Data Pin -> ESP32 Pin 4", 25, 155);
-      doc.text("- External DHT11: Data Pin -> ESP32 Pin 14", 25, 162);
-      doc.text("- Fan Relay: Control Pin -> ESP32 Pin 5 (Active Low)", 25, 169);
+      doc.text("Hardware Required: ESP32-WROOM, 2x DHT11 Sensors, 5V Relay", 20, 175);
+      doc.setDrawColor(226, 232, 240);
+      doc.setFillColor(248, 250, 252);
+      doc.rect(20, 180, 170, 35, "FD");
+      doc.setFont("courier", "normal");
+      doc.setFontSize(10);
+      doc.text("PIN 04 -> Internal DHT11 (Data)", 30, 190);
+      doc.text("PIN 14 -> External DHT11 (Data)", 30, 197);
+      doc.text("PIN 05 -> Cooling Fan Relay (Active LOW)", 30, 204);
+      doc.text("PIN VIN-> 5V Power | GND -> Common Ground", 30, 211);
     } else {
-      doc.text("Sensors Required: Soil Moisture, MQ135", 20, 145);
-      doc.text("- Soil Moisture: Analog Pin -> ESP32 Pin 35", 25, 155);
-      doc.text("- Air Quality (MQ135): Analog Pin -> ESP32 Pin 34", 25, 162);
-      doc.text("- Pump Relay: Control Pin -> ESP32 Pin 5 (Active Low)", 25, 169);
+      doc.text("Hardware Required: ESP32-WROOM, MQ135 Air Sensor, Soil Moisture, 5V Pump", 20, 175);
+      doc.setDrawColor(226, 232, 240);
+      doc.setFillColor(248, 250, 252);
+      doc.rect(20, 180, 170, 35, "FD");
+      doc.setFont("courier", "normal");
+      doc.setFontSize(10);
+      doc.text("PIN 35 -> Soil Moisture Sensor (Analog)", 30, 190);
+      doc.text("PIN 34 -> MQ135 Air Quality (Analog)", 30, 197);
+      doc.text("PIN 05 -> Irrigation Pump Relay (Active LOW)", 30, 204);
+      doc.text("PIN VIN-> 5V Power | GND -> Common Ground", 30, 211);
     }
 
-    // API Reference
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(16);
-    doc.text("Cloud API Endpoints", 20, 190);
-    
+    // --- Page 2: Implementation Instructions ---
+    doc.addPage();
+    doc.setFillColor(5, 10, 20);
+    doc.rect(0, 0, 210, 20, "F");
+    doc.setTextColor(255, 255, 255);
     doc.setFontSize(10);
+    doc.text("CORE_IMPLEMENTATION_PROTOCOL", 20, 13);
+
+    doc.setTextColor(15, 23, 42);
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("IV. FLASHING INSTRUCTIONS", 20, 35);
+    doc.line(20, 37, 190, 37);
+
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    const steps = [
+      "1. Open the Arduino IDE (ensure ESP32 board support is installed).",
+      "2. Install the 'ArduinoJson' library by Benoit Blanchon (required for telemetry).",
+      "3. Open the corresponding .cpp/.ino firmware from your repository folder.",
+      "4. Update the NETWORK section with your local SSID and Password.",
+      "5. Replace the DEVICE_ID and API_KEY constants with the credentials from Page 1.",
+      "6. Verify the code and flash to the target hardware via USB-C/Micro-USB."
+    ];
+    let y = 47;
+    steps.forEach(step => {
+      doc.text(step, 25, y);
+      y += 8;
+    });
+
+    doc.setFontSize(14);
+    doc.setFont("helvetica", "bold");
+    doc.text("V. C++ IMPLEMENTATION SNIPPET", 20, 110);
+    doc.line(20, 112, 190, 112);
+
+    doc.setFillColor(30, 41, 59); // slate-800
+    doc.rect(20, 120, 170, 50, "F");
+    doc.setTextColor(197, 255, 201);
+    doc.setFont("courier", "bold");
+    doc.setFontSize(9);
+    doc.text("// Update these lines in your firmware code:", 25, 130);
+    doc.text(`const char* DEVICE_ID = "${deviceId}";`, 25, 140);
+    doc.text(`const char* API_KEY   = "${apiKey}";`, 25, 150);
+    doc.text(`const char* SERVER    = "https://eco-shield.vercel.app/api/telemetry";`, 25, 160);
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(14);
+    doc.text("VI. DATA SYNC VERIFICATION", 20, 190);
+    doc.line(20, 192, 190, 192);
+
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text("Once flashed, open the Serial Monitor (115200 baud). Look for:", 20, 202);
     doc.setFont("courier", "normal");
-    doc.text("POST /api/telemetry", 20, 200);
-    doc.text("Headers:", 25, 210);
-    doc.text(`x-device-id: ${deviceId}`, 30, 217);
-    doc.text(`x-api-key:    ${apiKey}`, 30, 224);
+    doc.text("> WiFi Connected!", 25, 210);
+    doc.text("> Telemetry Sent: [HTTP 201]", 25, 218);
+    doc.text("> Pulse Confirmed by Central Command.", 25, 226);
 
     // Footer
     doc.setFont("helvetica", "italic");
-    doc.setFontSize(8);
-    doc.setTextColor(100, 100, 100);
-    doc.text("Generated by SJS Dashboard Automated Provisioning System", 105, 280, { align: "center" });
+    doc.setFontSize(7);
+    doc.setTextColor(150, 150, 150);
+    doc.text("SJS ECO-SHIELD GRID // AUTOMATED PROVISIONING BOT v1.0.4", 105, 285, { align: "center" });
 
-    doc.save(`${nodeName.toLowerCase().replace(/\s+/g, "_")}_config.pdf`);
+    doc.save(`${nodeName.toLowerCase().replace(/\s+/g, "_")}_blueprint.pdf`);
   };
 
   const copyToClipboard = (text: string) => {

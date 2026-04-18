@@ -1,23 +1,29 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
+#include <Wire.h>
+#include "DHT.h"
 #include <ArduinoJson.h> // REQUIRED: Install "ArduinoJson" by Benoit Blanchon in Library Manager
 
 // --- Configuration ---
 const char* WIFI_SSID = "ROBONET";
 const char* WIFI_PASSWORD = "blnt0077";
-const char* SERVER_URL = "https://unreiterable-funiculate-grace.ngrok-free.dev/api/telemetry"; // Cloud endpoint via ngrok
-const char* DEVICE_ID = "eco_node_field_dev";
-const char* API_KEY = "eco_sk_field_dev_456";
+const char* SERVER_URL = "https://eco-shield-grid-iot.vercel.app/api/telemetry"; // Cloud endpoint via ngrok
+const char* DEVICE_ID = "eco_node_cba05f72f7f8c8fd"; 
+const char* API_KEY = "eco_sk_f0809266170e2fcb06ecb202e726536b";
 
-#define PUMP_RELAY_PIN 5
-#define MQ135_PIN 34       
-#define SOIL_PIN 35        
+#define DHTPIN_INTERNAL 4   // Internal Sensor Pin
+#define DHTPIN_EXTERNAL 14  // External Sensor Pin
+#define DHTTYPE DHT11
+#define FAN_RELAY_PIN 5 
+
+DHT dht_internal(DHTPIN_INTERNAL, DHTTYPE);
+DHT dht_external(DHTPIN_EXTERNAL, DHTTYPE);
 
 unsigned long lastSendTime = 0;
 const unsigned long SEND_INTERVAL = 10000; // 10 seconds
 
 // Dynamic Threshold Variable (Cloud-Controlled)
-int currentIrrigationThreshold = 30; // Default 30%
+float currentCoolingThreshold = 25.0; 
 
 void connectWiFi() {
   Serial.print("Connecting to WiFi");
@@ -31,8 +37,11 @@ void connectWiFi() {
 
 void setup() {
   Serial.begin(115200);
-  pinMode(PUMP_RELAY_PIN, OUTPUT);
-  digitalWrite(PUMP_RELAY_PIN, HIGH); // Start with pump OFF (Active LOW relay)
+  pinMode(FAN_RELAY_PIN, OUTPUT);
+  digitalWrite(FAN_RELAY_PIN, LOW); // Start with fan OFF (Active LOW relay)
+
+  dht_internal.begin();
+  dht_external.begin();
 
   connectWiFi();
 }
@@ -41,21 +50,27 @@ void loop() {
   if (millis() - lastSendTime >= SEND_INTERVAL) {
     lastSendTime = millis();
 
-    int gasLevel = analogRead(MQ135_PIN); 
-    
-    int soilRaw = analogRead(SOIL_PIN);
-    // Map raw analog reading to percentage (Assumes 4095 is dry, 0 is wet)
-    int soilPercent = map(soilRaw, 4095, 0, 0, 100); 
-    if(soilPercent < 0) soilPercent = 0;
-    if(soilPercent > 100) soilPercent = 100;
+    // Read Internal Sensor
+    float intTemp = dht_internal.readTemperature();
+    float intHum = dht_internal.readHumidity();
+
+    // Read External Sensor
+    float extTemp = dht_external.readTemperature();
+    float extHum = dht_external.readHumidity();
+
+    if (isnan(intTemp) || isnan(intHum) || isnan(extTemp) || isnan(extHum)) {
+      Serial.println("Sensor read failure! One or more DHT11s not detected.");
+      return;
+    }
 
     // --- Decision Logic using Cloud Threshold ---
-    bool pumpActive = false;
-    if (soilPercent < currentIrrigationThreshold) {
-      digitalWrite(PUMP_RELAY_PIN, LOW); // ON
-      pumpActive = true;
+    // Rule: Activate fan if internal temperature exceeds cloud setting
+    bool fanActive = false;
+    if (intTemp > currentCoolingThreshold) {
+      digitalWrite(FAN_RELAY_PIN, HIGH); // ON
+      fanActive = true;
     } else {
-      digitalWrite(PUMP_RELAY_PIN, HIGH); // OFF
+      digitalWrite(FAN_RELAY_PIN, LOW); // OFF
     }
 
     if (WiFi.status() == WL_CONNECTED) {
@@ -67,9 +82,11 @@ void loop() {
 
       // Construct JSON payload
       String jsonBody = "{";
-      jsonBody += "\"air_quality_ppm\":" + String(gasLevel) + ",";
-      jsonBody += "\"soil_moisture_percent\":" + String(soilPercent) + ",";
-      jsonBody += "\"pump_active\":" + String(pumpActive ? "true" : "false");
+      jsonBody += "\"internal_temp_c\":" + String(intTemp, 1) + ",";
+      jsonBody += "\"internal_hum_pct\":" + String(intHum, 1) + ",";
+      jsonBody += "\"external_temp_c\":" + String(extTemp, 1) + ",";
+      jsonBody += "\"external_hum_pct\":" + String(extHum, 1) + ",";
+      jsonBody += "\"fan_active\":" + String(fanActive ? "true" : "false");
       jsonBody += "}";
 
       int httpResponseCode = http.POST(jsonBody);
@@ -81,10 +98,10 @@ void loop() {
         DeserializationError error = deserializeJson(doc, response);
         
         if (!error) {
-          int serverThreshold = doc["thresholds"]["irrigation"];
+          float serverThreshold = doc["thresholds"]["cooling"];
           if (serverThreshold > 0) {
-            currentIrrigationThreshold = serverThreshold;
-            Serial.println("Threshold Updated from Cloud: " + String(currentIrrigationThreshold) + "%");
+            currentCoolingThreshold = serverThreshold;
+            Serial.println("Threshold Updated from Cloud: " + String(currentCoolingThreshold));
           }
         }
       } else {

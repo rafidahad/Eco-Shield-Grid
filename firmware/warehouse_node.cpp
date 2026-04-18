@@ -7,7 +7,7 @@
 // --- Configuration ---
 const char* WIFI_SSID = "ROBONET";
 const char* WIFI_PASSWORD = "blnt0077";
-const char* SERVER_URL = "https://unreiterable-funiculate-grace.ngrok-free.dev/api/telemetry"; // Cloud endpoint via ngrok
+const char* SERVER_URL = "https://eco-shield-grid-iot.vercel.app/api/telemetry"; // Cloud endpoint via ngrok
 const char* DEVICE_ID = "eco_node_warehouse_dev"; 
 const char* API_KEY = "eco_sk_warehouse_dev_123";
 
