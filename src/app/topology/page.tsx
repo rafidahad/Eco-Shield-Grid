@@ -14,9 +14,26 @@ export default function TopologyPage() {
   const [selectedNode, setSelectedNode] = useState<any>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [orbitRadius, setOrbitRadius] = useState(180);
 
   useEffect(() => {
     fetchNodes();
+    
+    const handleResize = () => {
+      setOrbitRadius(window.innerWidth < 768 ? 110 : 180);
+    };
+    
+    // Set initial size safely after hydration or immediately if window exists
+    if (typeof window !== "undefined") {
+      handleResize();
+      window.addEventListener("resize", handleResize);
+    }
+    
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
   }, []);
 
   const fetchNodes = async () => {
@@ -108,7 +125,7 @@ export default function TopologyPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Sector Map Layout */}
-        <Card className="lg:col-span-2 bg-tactical-surface border-white/5 border-b-2 border-r-2 border-white/10 shadow-none overflow-hidden relative min-h-[500px]">
+        <Card className="lg:col-span-2 bg-tactical-surface border-white/5 border-b-2 border-r-2 border-white/10 shadow-none overflow-hidden relative min-h-[400px] md:min-h-[500px]">
           <CardHeader className="bg-tactical-high/30 border-b border-white/5 px-6 py-4">
             <CardTitle className="text-xs font-black uppercase tracking-widest flex items-center gap-2">
               <Globe size={14} className="text-tactical-accent" />
@@ -130,9 +147,8 @@ export default function TopologyPage() {
                 {/* Nodes radiating from center */}
                 {nodes.map((node, i) => {
                   const angle = (i * (360 / nodes.length)) * (Math.PI / 180);
-                  const radius = 180;
-                  const x = Math.cos(angle) * radius;
-                  const y = Math.sin(angle) * radius;
+                  const x = Math.cos(angle) * orbitRadius;
+                  const y = Math.sin(angle) * orbitRadius;
                   const isOnline = node.telemetry?.[0] && (Date.now() - new Date(node.telemetry[0].createdAt).getTime()) < 60000;
                   const isSelected = selectedNode?.id === node.id;
 
@@ -148,7 +164,7 @@ export default function TopologyPage() {
                       {/* Connection Line */}
                       <div 
                         style={{ 
-                          width: radius, 
+                          width: orbitRadius, 
                           height: 1, 
                           position: 'absolute', 
                           top: '50%', 

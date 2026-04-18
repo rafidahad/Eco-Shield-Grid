@@ -8,7 +8,10 @@ export async function POST(request: NextRequest) {
     const adminUser = process.env.ADMIN_USERNAME || "admin";
     const adminPass = process.env.ADMIN_PASSWORD || "password123";
 
-    if (username === adminUser && password === adminPass) {
+    if (
+      username?.trim()?.toLowerCase() === adminUser.toLowerCase() && 
+      password?.trim() === adminPass
+    ) {
       const expires = new Date(Date.now() + 24 * 60 * 60 * 1000);
       const session = await encrypt({ user: adminUser, expires });
 

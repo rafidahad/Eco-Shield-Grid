@@ -66,7 +66,7 @@ export function TacticalNodeCard({ node, updateThreshold }: TacticalNodeCardProp
             <div className="flex flex-col items-center justify-center p-6 bg-black/20 border border-white/5">
               <span className="text-[10px] text-secondary uppercase mb-3 tracking-[0.3em] font-bold">Internal_Core_Temp</span>
               <div className="flex items-baseline gap-1">
-                <span className={cn("text-6xl headline-font font-black tracking-tighter", 
+                <span className={cn("text-5xl md:text-6xl headline-font font-black tracking-tighter", 
                   (payload.internal_temp_c || 0) > (node.coolingThreshold || 25) ? "text-tactical-error glow-red" : "text-primary"
                 )}>
                   {payload.internal_temp_c ?? "--"}
@@ -97,7 +97,7 @@ export function TacticalNodeCard({ node, updateThreshold }: TacticalNodeCardProp
               </div>
 
               {/* Status HUDs */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className={cn("p-3 flex items-center justify-between border", 
                   payload.fan_active ? "bg-tactical-accent/10 border-tactical-accent/30" : "bg-black/40 border-white/5"
                 )}>
@@ -123,7 +123,7 @@ export function TacticalNodeCard({ node, updateThreshold }: TacticalNodeCardProp
             <div className="flex flex-col items-center justify-center p-6 bg-black/20 border border-white/5">
               <span className="text-[10px] text-secondary uppercase mb-3 tracking-[0.3em] font-bold">Soil_Moisture_lvl</span>
               <div className="flex items-baseline gap-1">
-                <span className={cn("text-6xl headline-font font-black tracking-tighter", 
+                <span className={cn("text-5xl md:text-6xl headline-font font-black tracking-tighter", 
                   (payload.soil_moisture_percent || 0) < (node.irrigationThreshold || 30) ? "text-tactical-warning" : "text-primary"
                 )}>
                   {payload.soil_moisture_percent ?? "--"}

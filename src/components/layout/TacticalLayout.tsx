@@ -28,7 +28,7 @@ export function TacticalStatusBar() {
 }
 
 
-export function TacticalSidebar() {
+export function TacticalSidebar({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (open: boolean) => void }) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -41,9 +41,22 @@ export function TacticalSidebar() {
   ];
 
   return (
-    <aside className="fixed left-0 top-0 h-full w-64 bg-tactical-bg flex flex-col pt-16 z-40 border-r border-white/5">
-      <div className="px-6 py-8">
-        {/* Operator Info */}
+    <>
+      {/* Mobile Backdrop Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 z-30 bg-black/80 backdrop-blur-sm md:hidden"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
+      {/* Sidebar Navigation */}
+      <aside className={cn(
+        "fixed left-0 top-0 h-full w-64 bg-tactical-bg flex flex-col pt-16 z-40 border-r border-white/5 transition-transform duration-300 md:translate-x-0 absolute md:fixed",
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
+        <div className="px-6 py-8">
+          {/* Operator Info */}
         <div className="flex items-center gap-3 mb-8 bg-tactical-high p-4 border border-white/10 group cursor-pointer hover:bg-tactical-high/80 transition-colors">
           <div className="w-10 h-10 bg-muted flex items-center justify-center border border-white/5 group-hover:border-tactical-accent/30 transition-colors">
             <UserCircle className="text-primary" size={24} />
@@ -61,7 +74,10 @@ export function TacticalSidebar() {
             return (
               <div 
                 key={item.label}
-                onClick={() => router.push(item.path)}
+                onClick={() => {
+                  router.push(item.path);
+                  setIsOpen(false);
+                }}
                 className={cn(
                   "flex items-center gap-3 px-4 py-3 transition-all duration-200 cursor-pointer group",
                   isActive 
@@ -103,19 +119,29 @@ export function TacticalSidebar() {
         </div>
       </div>
     </aside>
+    </>
   );
 }
 
 export function TacticalLayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isLoginPage = pathname === "/login";
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-tactical-bg selection:bg-tactical-accent selection:text-black">
       <TacticalStatusBar />
-      <header className="fixed top-0 w-full border-t-4 border-tactical-accent bg-tactical-bg flex justify-between items-center px-6 py-3 z-[90] border-b border-white/5">
-        <div className="flex items-center gap-8">
-          <span className="text-xl font-bold tracking-tighter text-primary headline-font">ECO_SHIELD_GRID</span>
+      <header className="fixed top-0 w-full border-t-4 border-tactical-accent bg-tactical-bg flex justify-between items-center px-4 md:px-6 py-3 z-[90] border-b border-white/5">
+        <div className="flex items-center gap-4 md:gap-8">
+          {!isLoginPage && (
+            <button 
+              className="md:hidden text-secondary hover:text-primary transition-colors focus:outline-none"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              <Menu size={24} />
+            </button>
+          )}
+          <span className="text-lg md:text-xl font-bold tracking-tighter text-primary headline-font">ECO_SHIELD_GRID</span>
           {/* Only show nav links if NOT on login page */}
           {!isLoginPage && (
             <nav className="hidden md:flex items-center gap-6">
@@ -141,11 +167,11 @@ export function TacticalLayoutWrapper({ children }: { children: React.ReactNode 
         </div>
       </header>
       
-      {!isLoginPage && <TacticalSidebar />}
+      {!isLoginPage && <TacticalSidebar isOpen={isMobileMenuOpen} setIsOpen={setIsMobileMenuOpen} />}
 
       <main className={cn(
         "transition-all duration-300 pt-20",
-        isLoginPage ? "ml-0" : "ml-64"
+        isLoginPage ? "ml-0" : "md:ml-64 ml-0"
       )}>
         <div className={cn(
           "p-8 mx-auto",
@@ -157,8 +183,8 @@ export function TacticalLayoutWrapper({ children }: { children: React.ReactNode 
       
       {/* Footer HUD Decor - Only show if not login or adjust layout */}
       <footer className={cn(
-        "p-6 border-t border-white/5 flex justify-between items-center text-[10px] text-secondary font-bold uppercase tracking-widest bg-black/20",
-        isLoginPage ? "ml-0" : "ml-64"
+        "p-4 md:p-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px] text-secondary font-bold uppercase tracking-widest bg-black/20",
+        isLoginPage ? "ml-0" : "md:ml-64 ml-0"
       )}>
         <div className="flex items-center gap-3">
           <div className="w-1.5 h-1.5 bg-tactical-accent rounded-full animate-pulse" />
