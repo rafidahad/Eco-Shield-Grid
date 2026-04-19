@@ -5,11 +5,11 @@
 #include <ArduinoJson.h> // REQUIRED: Install "ArduinoJson" by Benoit Blanchon in Library Manager
 
 // --- Configuration ---
-const char* WIFI_SSID = "ROBONET";
-const char* WIFI_PASSWORD = "blnt0077";
+const char* WIFI_SSID = "EcoShield";
+const char* WIFI_PASSWORD = "ecoshield";
 const char* SERVER_URL = "https://eco-shield-grid-iot.vercel.app/api/telemetry"; // Cloud endpoint via ngrok
-const char* DEVICE_ID = "eco_node_warehouse_dev"; 
-const char* API_KEY = "eco_sk_warehouse_dev_123";
+const char* DEVICE_ID = "eco_node_3efaafd6fb42e2ca"; 
+const char* API_KEY = "eco_sk_56e50b2f431e899a624fb01d653d1c2d";
 
 #define DHTPIN_INTERNAL 4   // Internal Sensor Pin
 #define DHTPIN_EXTERNAL 14  // External Sensor Pin
@@ -38,7 +38,7 @@ void connectWiFi() {
 void setup() {
   Serial.begin(115200);
   pinMode(FAN_RELAY_PIN, OUTPUT);
-  digitalWrite(FAN_RELAY_PIN, HIGH); // Start with fan OFF (Active LOW relay)
+  digitalWrite(FAN_RELAY_PIN, LOW); // Start with fan OFF (Active LOW relay)
 
   dht_internal.begin();
   dht_external.begin();
@@ -67,10 +67,10 @@ void loop() {
     // Rule: Activate fan if internal temperature exceeds cloud setting
     bool fanActive = false;
     if (intTemp > currentCoolingThreshold) {
-      digitalWrite(FAN_RELAY_PIN, LOW); // ON
+      digitalWrite(FAN_RELAY_PIN, HIGH); // ON
       fanActive = true;
     } else {
-      digitalWrite(FAN_RELAY_PIN, HIGH); // OFF
+      digitalWrite(FAN_RELAY_PIN, LOW); // OFF
     }
 
     if (WiFi.status() == WL_CONNECTED) {
